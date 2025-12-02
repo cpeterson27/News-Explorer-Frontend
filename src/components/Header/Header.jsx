@@ -8,7 +8,7 @@ function Header({ onSearch }) {
       <div className="header__content">
         <section className="home-page__search">
           <h1 className="home-page__title">
-            What&apos;s going on in <br /> the world?
+            What&apos;s going on in the world?
           </h1>
           <p className="home-page__subtitle">
             Find the latest news on any topic and save them in your personal

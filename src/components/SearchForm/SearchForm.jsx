@@ -14,6 +14,7 @@ function SearchForm({ onSearch }) {
   return (
     <form className="search-form" onSubmit={handleSubmit}>
       <input
+        id="search"
         type="text"
         className="search-form__input"
         placeholder="Enter topic"

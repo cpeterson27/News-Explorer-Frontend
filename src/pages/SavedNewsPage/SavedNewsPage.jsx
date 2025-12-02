@@ -1,12 +1,16 @@
 import './SavedNewsPage.css';
 import NewsCard from '../../components/NewsCard/NewsCard';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
+import {useContext} from 'react';
 
 function SavedNewsPage({ savedArticles = [] }) {
+    const { currentUser } = useContext(CurrentUserContext);
+
   return (
     <main className="saved-news-page">
       <section className="saved-news-page__header">
         <p className="saved-news-page__subtitle">Saved articles</p>
-        <h1 className="saved-news-page__title">Your saved articles</h1>
+        <h1 className="saved-news-page__title">{`${currentUser?.name}, You have ${savedArticles.length} saved articles`}</h1>
         <p className="saved-news-page__info">
           By keywords: {savedArticles.length} saved articles
         </p>

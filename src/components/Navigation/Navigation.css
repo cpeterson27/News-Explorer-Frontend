@@ -12,7 +12,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
   z-index: 100;
   background-color: transparent;
   padding: 19px 104px 13px;
@@ -32,8 +31,8 @@
   position: relative;
 }
 
-.navigation.navigation--saved-page{
-  border-bottom: 2px solid #D1D2D6;
+.navigation.navigation--saved-page {
+  border-bottom: 2px solid #d1d2d6;
 }
 
 .navigation--saved-page .navigation__link {
@@ -51,7 +50,6 @@
 
 .navigation--saved-page .navigation__link::after {
   background-color: black;
-
 }
 
 .navigation__link {
@@ -117,7 +115,7 @@
 }
 
 .navigation__signin-button:hover {
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
   color: #1a1b22;
 }
 
@@ -135,18 +133,178 @@
   position: relative;
 }
 
-@media (max-width: 768px) {
+.navigation__menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.navigation__menu-line {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3s;
+}
+
+.navigation__mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 120px;
+  border-radius: 0 0 16px 16px;
+  background-color: #1a1b22;
+  flex-direction: column;
+  padding: 80px 0 20px;
+  gap: 20px;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+  z-index: 200;
+}
+
+.navigation__mobile-menu--saved {
+  background-color: white;
+}
+
+.navigation__mobile-menu_opened {
+  transform: translateY(0);
+}
+
+.navigation__mobile-menu_opened ~ .navigation__logo {
+  color: white !important;
+  z-index: 201;
+}
+
+.navigation__mobile-link {
+  color: white;
+  text-decoration: none;
+  font-family: 'Roboto', serif;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 0 16px 0;
+}
+
+.navigation__mobile-menu--saved .navigation__mobile-link {
+  color: black;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.navigation__mobile-signin,
+.navigation__mobile-signout {
+  background-color: transparent;
+  color: white;
+  width: 288px;
+  border: 1px solid white;
+  border-radius: 100px;
+  padding: 12px 40px;
+  font-size: 18px;
+  font-family: 'Roboto', serif;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 20px;
+  align-self: center;
+}
+
+.navigation__mobile-menu--saved .navigation__mobile-signin,
+.navigation__mobile-menu--saved .navigation__mobile-signout {
+  color: black;
+  border-color: black;
+}
+
+.navigation__menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  z-index: 201;
+}
+
+.navigation__menu-line {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3s;
+  position: absolute;
+}
+
+.navigation__menu-line:first-child {
+  top: 8px;
+}
+
+.navigation__menu-line:last-child {
+  top: 14px;
+}
+
+.navigation__menu-btn--saved .navigation__menu-line {
+  background-color: black;
+}
+
+.navigation.navigation__mobile-menu_opened .navigation__menu-line {
+  background-color: white !important;
+  top: 11px;
+}
+
+.navigation.navigation__mobile-menu_opened .navigation__menu-line:first-child {
+  transform: rotate(45deg);
+}
+
+.navigation.navigation__mobile-menu_opened .navigation__menu-line:last-child {
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 320px) {
   .navigation {
-    padding: 15px 20px;
+    padding: 19px 16px 13px;
+    right: 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .navigation__logo {
+    z-index: 201;
   }
 
   .navigation__link {
-    font-size: 16px;
-    margin-right: 15px;
+    display: none;
   }
 
-  .navigation__button {
-    padding: 10px 117px;
-    font-size: 16px;
+  .navigation__signin-button {
+    display: none;
+  }
+
+  .navigation__user-button {
+    display: none;
+  }
+
+  .navigation__menu-btn {
+    display: flex;
+  }
+
+  .navigation__mobile-menu {
+    display: flex;
+  }
+
+  .navigation__mobile-menu::before {
+    content: '';
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.2);
   }
 }

@@ -1,4 +1,3 @@
-import './RegisterModal.css';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 
 function RegisterModal({ isOpen, onClose, onRegister, onSwitchToLogin }) {

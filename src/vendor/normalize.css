@@ -355,3 +355,11 @@ template {
 [hidden] {
   display: none;
 }
+
+@media (max-width: 768px) {
+
+h2 {
+  font-size: 30px;
+}
+}
+

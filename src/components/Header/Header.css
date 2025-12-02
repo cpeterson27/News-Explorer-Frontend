@@ -19,7 +19,8 @@
 }
 
 .header {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url('/assets/images/headercontent.jpg');
   background-size: cover;
   background-position: center;
@@ -58,4 +59,36 @@
   font-size: 18px;
   margin-bottom: 88px;
   margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .header__content {
+    position: relative;
+    margin-top: 104px;
+  }
+
+  .home-page__title {
+    max-width: 385px;
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .home-page__subtitle {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .home-page__search {
+    width: 452px;
+  }
+}
+
+@media (max-width: 320px) {
+  .home-page__search {
+    width: 288px;
+  }
+
+  .home-page__subtitle {
+    margin-bottom: 122px;
+  }
 }

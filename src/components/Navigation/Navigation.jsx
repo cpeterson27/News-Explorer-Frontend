@@ -1,11 +1,12 @@
 import './Navigation.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function Navigation({ onOpenLoginModal, isOnSavedPage }) {
   const { currentUser, isLoggedIn, setIsLoggedIn, setCurrentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleSignOut = () => {
     setIsLoggedIn(false);
@@ -13,9 +14,13 @@ function Navigation({ onOpenLoginModal, isOnSavedPage }) {
     localStorage.removeItem('jwt');
     navigate('/');
   };
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
     
   return (
-    <nav className={`navigation ${isOnSavedPage ? 'navigation--saved-page': ''}`}>
+    <nav className={`navigation ${isOnSavedPage ? 'navigation--saved-page': ''} ${isMenuOpen ? 'navigation__mobile-menu_opened' : ''}`}>
       <Link to="/" className="navigation__logo">
         NewsExplorer
       </Link>
@@ -54,6 +59,52 @@ function Navigation({ onOpenLoginModal, isOnSavedPage }) {
           Sign In
         </button>
       )}
+
+      <button 
+        className={`navigation__menu-btn ${isOnSavedPage ? 'navigation__menu-btn--saved' : ''}`}
+        onClick={handleMenuToggle}
+      >
+        <span className="navigation__menu-line"></span>
+        <span className="navigation__menu-line"></span>
+      </button>
+
+      <div className={`navigation__mobile-menu ${isMenuOpen ? 'navigation__mobile-menu_opened' : ''} ${isOnSavedPage ? 'navigation__mobile-menu--saved' : ''}`}>
+        <Link to="/" className="navigation__mobile-link" onClick={handleMenuToggle}>
+          Home
+        </Link>
+
+        {isLoggedIn && (
+          <>
+            <Link to="/saved-news" className="navigation__mobile-link" onClick={handleMenuToggle}>
+              Saved News
+            </Link>
+            
+            <button 
+              type="button" 
+              className="navigation__mobile-signout"
+              onClick={() => {
+                handleSignOut();
+                handleMenuToggle();
+              }}
+            >
+              {currentUser?.name || 'User'}
+            </button>
+          </>
+        )}
+
+        {!isLoggedIn && (
+          <button 
+            type="button" 
+            className="navigation__mobile-signin"
+            onClick={() => {
+              onOpenLoginModal();
+              handleMenuToggle();
+            }}
+          >
+            Sign In
+          </button>
+        )}
+      </div>
     </nav>
   );
 }

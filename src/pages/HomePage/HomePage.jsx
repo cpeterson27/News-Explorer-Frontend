@@ -1,4 +1,3 @@
-import './HomePage.css';
 import { useState } from 'react';
 import PreLoader from '../../components/Preloader/Preloader';
 import Header from '../../components/Header/Header';
