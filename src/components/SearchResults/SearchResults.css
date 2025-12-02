@@ -1,0 +1,53 @@
+.search-results {
+  background-color: #F5F6F7;
+  padding-top: 80px;
+  padding-bottom: 80px; 
+}
+
+.search-results__title {
+  margin: 0 0 64px; 
+  padding: 0 104px;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 46px;
+}
+
+.search-results__cards {
+  padding: 0 104px;
+  display: grid;
+  grid-template-columns: repeat(3, 400px);
+  gap: 16px;
+  justify-content: center;
+}
+
+.search-results__show-more {
+  width: 288px;
+  border-radius: 100px;
+  border: none;
+  padding: 20px 10px;
+  font-size: 18px;
+  font-family: 'Roboto', serif;
+  font-weight: 500;
+  cursor: pointer;
+  display: block;
+  margin: 64px auto 80px; /* auto centers the button */
+  background-color: white;
+}
+
+.search-results__show-more:hover {
+  background-color: #e8e8e8;
+}
+
+.search-results__not-found {
+  font-size: 26px;
+  font-weight: 400;
+  text-align: center;
+  margin: 0 0 16px;
+}
+
+.search-results__message {
+  font-size: 18px;
+  color: #B6BCBF;
+  text-align: center;
+  margin: 0 0 80px;
+}

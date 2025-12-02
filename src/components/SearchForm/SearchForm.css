@@ -1,0 +1,83 @@
+@font-face {
+  font-family: 'Roboto';
+  src:
+    url('../../assets/fonts/roboto-500.woff2') format('woff2'),
+    url('../../assets/fonts/roboto-500.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src:
+    url('../../assets/fonts/roboto-400.woff2') format('woff2'),
+    url('../../assets/fonts/roboto-400.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.search-form {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.search-form__input {
+  width: 608px;
+  height: 64px;
+  padding: 0 0 0 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 100px;
+  background-color: rgba(255, 255, 255);
+  color: #1a1b22;
+}
+
+.search-form__input::placeholder {
+  color: #b6bcbf;
+  font-size: 16px;
+  font-family: 'Roboto', serif;
+}
+
+.search-form__button {
+  position: absolute;
+  right: 0px;
+  padding: 16px 32px;
+  font-family: 'Roboto', serif;
+  font-size: 18px;
+  font-weight: 500;
+  width: 168px;
+  height: 64px;
+  color: white;
+  background-color: #2f71e5;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-form__button:hover {
+  background-color: #347eff;
+}
+
+.search-form__button:active {
+  background-color: #2a65cc;
+}
+
+@media (max-width: 768px) {
+  .search-form {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .search-form__input {
+    width: 100%;
+  }
+
+  .search-form__button {
+    width: 100%;
+  }
+}

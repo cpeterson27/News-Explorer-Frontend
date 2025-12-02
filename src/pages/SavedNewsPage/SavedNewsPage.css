@@ -1,0 +1,32 @@
+.saved-news-page__header{
+    position: relative;
+    margin: 120px 104px 0;
+}
+
+.saved-news-page__subtitle{
+    font-family: 'Roboto', serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #1A1B22;
+    opacity: 50%;
+}
+
+.saved-news-page__title {
+    font-family: 'Roboto-Slab', serif;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 46px;
+}
+
+.saved-news-page__info{
+    font-family: 'Roboto', serif;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.saved-news-page__results{
+    background-color:#F5F6F7;
+    min-height: 200px;
+
+}
