@@ -1,12 +1,4 @@
-@font-face {
-  font-family: 'Roboto';
-  src:
-    url('../../assets/fonts/roboto-400-regular.woff2') format('woff2'),
-    url('../../assets/fonts/roboto-400-regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+
 
 .footer {
   background-color: white;
