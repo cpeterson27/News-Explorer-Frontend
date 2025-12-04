@@ -57,11 +57,13 @@ Show Image
 Practical Information
 Live Demo
 🔗 //link for live demo here after deployment of front and backend
+https://cpeterson27.github.io/News-Explorer-Frontend/
+
 Running Locally
 
 Clone the repository
 
-bash   git clone https://github.com/yourusername/news-explorer.git
+bash   git clone https://github.com/cpeterson27/news-explorer.git
 
 cd news-explorer
 
