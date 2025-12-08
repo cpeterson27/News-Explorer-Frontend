@@ -4,7 +4,8 @@ import { useContext, useState } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function Navigation({ onOpenLoginModal, isOnSavedPage }) {
-  const { currentUser, isLoggedIn, setIsLoggedIn, setCurrentUser } = useContext(CurrentUserContext);
+  const { currentUser, isLoggedIn, setIsLoggedIn, setCurrentUser } =
+    useContext(CurrentUserContext);
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -18,13 +19,15 @@ function Navigation({ onOpenLoginModal, isOnSavedPage }) {
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-    
+
   return (
-    <nav className={`navigation ${isOnSavedPage ? 'navigation--saved-page': ''} ${isMenuOpen ? 'navigation__mobile-menu_opened' : ''}`}>
+    <nav
+      className={`navigation ${isOnSavedPage ? 'navigation--saved-page' : ''} ${isMenuOpen ? 'navigation__mobile-menu_opened' : ''}`}
+    >
       <Link to="/" className="navigation__logo">
         NewsExplorer
       </Link>
-      
+
       <Link to="/" className="navigation__link navigation__link_active">
         Home
       </Link>
@@ -34,9 +37,9 @@ function Navigation({ onOpenLoginModal, isOnSavedPage }) {
           <Link to="/saved-news" className="navigation__link">
             Saved News
           </Link>
-          
-          <button 
-            type="button" 
+
+          <button
+            type="button"
             className="navigation__user-button"
             onClick={handleSignOut}
           >
@@ -51,8 +54,8 @@ function Navigation({ onOpenLoginModal, isOnSavedPage }) {
       )}
 
       {!isLoggedIn && (
-        <button 
-          type="button" 
+        <button
+          type="button"
           className="navigation__signin-button"
           onClick={onOpenLoginModal}
         >
@@ -60,7 +63,7 @@ function Navigation({ onOpenLoginModal, isOnSavedPage }) {
         </button>
       )}
 
-      <button 
+      <button
         className={`navigation__menu-btn ${isOnSavedPage ? 'navigation__menu-btn--saved' : ''}`}
         onClick={handleMenuToggle}
       >
@@ -68,19 +71,33 @@ function Navigation({ onOpenLoginModal, isOnSavedPage }) {
         <span className="navigation__menu-line"></span>
       </button>
 
-      <div className={`navigation__mobile-menu ${isMenuOpen ? 'navigation__mobile-menu_opened' : ''} ${isOnSavedPage ? 'navigation__mobile-menu--saved' : ''}`}>
-        <Link to="/" className="navigation__mobile-link" onClick={handleMenuToggle}>
+      {isMenuOpen && (
+        <div className="navigation__overlay" onClick={handleMenuToggle} />
+      )}
+
+      <div
+        className={`navigation__mobile-menu ${isMenuOpen ? 'navigation__mobile-menu_opened' : ''} ${isOnSavedPage ? 'navigation__mobile-menu--saved' : ''}`}
+      >
+        <Link
+          to="/"
+          className="navigation__mobile-link"
+          onClick={handleMenuToggle}
+        >
           Home
         </Link>
 
         {isLoggedIn && (
           <>
-            <Link to="/saved-news" className="navigation__mobile-link" onClick={handleMenuToggle}>
+            <Link
+              to="/saved-news"
+              className="navigation__mobile-link"
+              onClick={handleMenuToggle}
+            >
               Saved News
             </Link>
-            
-            <button 
-              type="button" 
+
+            <button
+              type="button"
               className="navigation__mobile-signout"
               onClick={() => {
                 handleSignOut();
@@ -93,8 +110,8 @@ function Navigation({ onOpenLoginModal, isOnSavedPage }) {
         )}
 
         {!isLoggedIn && (
-          <button 
-            type="button" 
+          <button
+            type="button"
             className="navigation__mobile-signin"
             onClick={() => {
               onOpenLoginModal();

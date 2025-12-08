@@ -54,7 +54,7 @@
 
 @media (max-width: 768px) {
   .search-results__cards {
-    padding: 0 104px;
+    padding: 0 32px;
     display: grid;
     grid-template-columns: repeat(3, 224px);
     gap: 8px;
@@ -77,7 +77,7 @@
   }
 
   .search-results__show-more {
-    margin: 16px auto 3px;
+    margin: 16px auto 5px;
   }
 
   .search-results__title {

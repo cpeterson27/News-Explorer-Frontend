@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 202;
 }
 
 .modal__buttons {
@@ -103,8 +104,8 @@
 }
 
 .modal__submit:disabled {
-  background-color: #E6E8EB;
-  color: #B6BCBF;
+  background-color: #e6e8eb;
+  color: #b6bcbf;
 }
 
 .modal__redirect {
@@ -127,4 +128,3 @@
   color: green;
   font-size: 14px;
 }
-

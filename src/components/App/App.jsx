@@ -9,8 +9,8 @@ import LoginModal from '../LoginModal/LoginModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { CurrentUserProvider } from '../../contexts/CurrentUserContext';
-import { login } from '../../utils/auth';
-import { useLocation } from 'react-router-dom'
+import { login, register } from '../../utils/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function App() {
   const [activeModal, setActiveModal] = useState('');
@@ -43,6 +43,7 @@ function AppContent({
 }) {
   const { setCurrentUser, setIsLoggedIn } = useContext(CurrentUserContext);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = async (values) => {
     try {
@@ -57,11 +58,27 @@ function AppContent({
     }
   };
 
+const handleRegister = async (values) => {
+    console.log('Values from form:', values); // Add this line
+
+  try {
+    await register(values.name, values.email, values.password);
+    const data = await login(values.email, values.password);
+    localStorage.setItem('jwt', data.token);
+    setCurrentUser(data.user);
+    setIsLoggedIn(true);
+    handleCloseModal();
+    navigate('/saved-news');
+  } catch (error) {
+    console.error('Error registering user:', error);
+  }
+};
+
   return (
     <div className="app">
-      <Navigation 
-      onOpenLoginModal={handleOpenLoginModal} 
-      isOnSavedPage={location.pathname === "/saved-news"}
+      <Navigation
+        onOpenLoginModal={handleOpenLoginModal}
+        isOnSavedPage={location.pathname === '/saved-news'}
       />
 
       <Routes>
@@ -69,8 +86,7 @@ function AppContent({
         <Route path="/saved-news" element={<SavedNewsPage />} />
       </Routes>
 
-      <Footer 
-      isOnSavedPage={location.pathname === "/saved-news"} />
+      <Footer isOnSavedPage={location.pathname === '/saved-news'} />
 
       <LoginModal
         isOpen={activeModal === 'login'}
@@ -83,6 +99,7 @@ function AppContent({
         isOpen={activeModal === 'register'}
         onClose={handleCloseModal}
         onSwitchToLogin={() => setActiveModal('login')}
+        onRegister={handleRegister}
       />
     </div>
   );
