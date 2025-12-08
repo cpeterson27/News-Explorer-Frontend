@@ -1,6 +1,6 @@
-import './Preloader.css';
+import './PreLoader.css';
 
-function Preloader() {
+function PreLoader() {
   return (
     <div className="preloader">
       <div className="preloader__container">
@@ -11,4 +11,4 @@ function Preloader() {
   );
 }
 
-export default Preloader;
+export default PreLoader;
