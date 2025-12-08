@@ -34,19 +34,21 @@ function HomePage() {
   };
 
   const handleSave = (article) => {
-    setSavedArticles(prev => [...prev, article]);
+    setSavedArticles((prev) => [...prev, article]);
   };
 
-const handleDelete = (article) => {
-  setSavedArticles(prev => prev.filter(saved => saved.url !== article.url));
-};
+  const handleDelete = (article) => {
+    setSavedArticles((prev) =>
+      prev.filter((saved) => saved.url !== article.url),
+    );
+  };
 
   return (
     <main className="home-page">
       <Header onSearch={handleSearch} />
 
-      {hasSearched && (
-        isLoading ? (
+      {hasSearched &&
+        (isLoading ? (
           <PreLoader />
         ) : (
           <SearchResults
@@ -55,11 +57,9 @@ const handleDelete = (article) => {
             savedArticles={savedArticles}
             onDeleteArticle={handleDelete}
           />
-        )
-      )}
+        ))}
     </main>
   );
 }
-
 
 export default HomePage;
