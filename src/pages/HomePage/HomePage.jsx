@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PreLoader from '../../components/Preloader/Preloader';
 import Header from '../../components/Header/Header';
 import { handleServerResponse } from '../../utils/api';
+import { BASE_URL } from '../../utils/constants';     // <-- you forgot this
 import SearchResults from '../../components/SearchResults/SearchResults';
 
 function HomePage() {
@@ -14,7 +15,7 @@ function HomePage() {
     setIsLoading(true);
     setHasSearched(true);
 
-    const url = `http://localhost:5001/api/news?q=${query}`;
+    const url = `${BASE_URL}/news?q=${encodeURIComponent(query)}`;
 
     return fetch(url)
       .then(handleServerResponse)
@@ -34,7 +35,7 @@ function HomePage() {
 
   const handleDelete = (article) => {
     setSavedArticles((prev) =>
-      prev.filter((saved) => saved.url !== article.url),
+      prev.filter((saved) => saved.url !== article.url)
     );
   };
 
