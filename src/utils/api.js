@@ -30,6 +30,18 @@ export const handleServerResponse = (res) => {
     });
 };
 
+export const searchNews = async (query, from, to) => {
+  const response = await fetch(
+    `${BASE_URL}/news/search?q=${encodeURIComponent(query)}&from=${from}&to=${to}&pageSize=100`
+  );
+  
+  if (!response.ok) {
+    throw new Error('Failed to fetch news data');
+  }
+  
+  return response.json();
+};
+
 export function request(url, options) {
   return fetch(url, options).then(handleServerResponse);
 }

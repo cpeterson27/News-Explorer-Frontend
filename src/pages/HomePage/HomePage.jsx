@@ -2,7 +2,6 @@ import { useState } from 'react';
 import PreLoader from '../../components/Preloader/Preloader';
 import Header from '../../components/Header/Header';
 import { handleServerResponse } from '../../utils/api';
-import { apiKey } from '../../utils/constants';
 import SearchResults from '../../components/SearchResults/SearchResults';
 
 function HomePage() {
@@ -15,11 +14,7 @@ function HomePage() {
     setIsLoading(true);
     setHasSearched(true);
 
-    const from = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
-    const to = new Date().toISOString();
-    const pageSize = 100;
-
-    const url = `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}&from=${from}&to=${to}&pageSize=${pageSize}`;
+    const url = `http://localhost:3001/api/news?q=${query}`;
 
     return fetch(url)
       .then(handleServerResponse)
