@@ -15,7 +15,7 @@ function HomePage() {
     setIsLoading(true);
     setHasSearched(true);
 
-    const url = `${BASE_URL}/news?q=${encodeURIComponent(query)}`;
+    const url = `${BASE_URL}?q=${encodeURIComponent(query)}`;
 
     return fetch(url)
       .then(handleServerResponse)
