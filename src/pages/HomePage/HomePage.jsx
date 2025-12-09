@@ -14,7 +14,7 @@ function HomePage() {
     setIsLoading(true);
     setHasSearched(true);
 
-    const url = `http://localhost:3001/api/news?q=${query}`;
+    const url = `http://localhost:5001/api/news?q=${query}`;
 
     return fetch(url)
       .then(handleServerResponse)
