@@ -17,6 +17,19 @@
   min-width: 0;
 }
 
+.navigation__user-button {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 100px;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-family: 'Roboto', serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
 .navigation__overlay {
   position: fixed;
   top: 0;
@@ -279,6 +292,8 @@
   transform: rotate(-45deg);
 }
 
+
+
 @media (max-width: 768px) {
   .navigation {
     padding: 19px 40px 13px;
@@ -289,9 +304,6 @@
   .navigation {
     padding: 19px 20px 13px;
   }
-}
-
-
 }
 
 @media (max-width: 320px) {
