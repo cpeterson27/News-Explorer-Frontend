@@ -3,12 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-   "homepage": "https://newsexplorer27.mooo.com",
+   "homepage": "https://www.newsexplorer28.crabdance.com",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./dist/* cgdesigns93@newsexplorer27.mooo.com:/home/cgdesigns93/News-Explorer-Frontend",
+    "deploy": "npm run build && scp -r ./dist/* cgdesigns93@www.newsexplorer28.crabdance.com:/home/cgdesigns93/News-Explorer-Frontend",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format": "prettier --write"
