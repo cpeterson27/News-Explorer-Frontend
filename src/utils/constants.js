@@ -1,3 +1,3 @@
-const BASE_URL = 'https://api.newsexplorer27.mooo.com/api/news';
+const BASE_URL = 'https://api.newsexplorer28.crabdance.com';
 
 export { BASE_URL };
