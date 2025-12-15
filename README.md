@@ -27,8 +27,8 @@ In today's information-saturated world, it's challenging to keep track of news a
 
 ## 🚀 Live Demo
 
-- **Frontend**: [https://newsexplorer27.mooo.com](https://newsexplorer27.mooo.com)
-- **Backend API**: [https://api.newsexplorer27.mooo.com](https://api.newsexplorer27.mooo.com)
+- **Frontend**: [https://newsexplorer28.mooo.com](https://newsexplorer28.mooo.com)
+- **Backend API**: [https://api.newsexplorer28.mooo.com](https://api.newsexplorer28.mooo.com)
 - **GitHub Frontend**: [https://github.com/cpeterson27/News-Explorer-Frontend](https://github.com/cpeterson27/News-Explorer-Frontend)
 - **GitHub Backend**: [https://github.com/cpeterson27/News-Explorer-Backend](https://github.com/cpeterson27/News-Explorer-Backend)
 

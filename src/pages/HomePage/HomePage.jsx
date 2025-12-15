@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PreLoader from '../../components/Preloader/Preloader';
 import Header from '../../components/Header/Header';
 import { handleServerResponse } from '../../utils/api';
-import { BASE_URL } from '../../utils/constants';     // <-- you forgot this
+import { BASE_URL } from '../../utils/constants';  
 import SearchResults from '../../components/SearchResults/SearchResults';
 
 function HomePage() {
