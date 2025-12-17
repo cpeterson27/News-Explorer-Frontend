@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Navigation from '../Navigation/Navigation';
 import HomePage from '../../pages/HomePage/HomePage';
 import SavedNewsPage from '../../pages/SavedNewsPage/SavedNewsPage';
@@ -11,6 +11,7 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { CurrentUserProvider } from '../../contexts/CurrentUserContext';
 import { login, register } from '../../utils/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getArticles, getCurrentUser } from '../../utils/api';
 
 function App() {
   const [activeModal, setActiveModal] = useState('');
@@ -44,7 +45,7 @@ function AppContent({
   const { setCurrentUser, setIsLoggedIn } = useContext(CurrentUserContext);
   const location = useLocation();
   const navigate = useNavigate();
-
+const [savedArticles, setSavedArticles] = useState([]);
   const handleLogin = async (values) => {
     try {
       const data = await login(values.email, values.password);
@@ -74,6 +75,26 @@ const handleRegister = async (values) => {
   }
 };
 
+useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      getArticles(token)
+        .then((articles) => {
+          setSavedArticles(articles);
+        })
+        .catch((error) => {
+          console.error('Error fetching saved articles:', error);
+        });
+        getCurrentUser(token)
+        .then((user) => {
+          setCurrentUser(user);
+          setIsLoggedIn(true);
+        })
+        .catch((error) => {
+          console.error('Error fetching current user:', error);
+        });
+    }
+  }, []);
   return (
     <div className="app">
       <Navigation
@@ -82,8 +103,8 @@ const handleRegister = async (values) => {
       />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/saved-news" element={<SavedNewsPage />} />
+        <Route path="/" element={<HomePage savedArticles={savedArticles} setSavedArticles={setSavedArticles}/>}/>
+        <Route path="/saved-news" element={<SavedNewsPage savedArticles={savedArticles}/>} />
       </Routes>
 
       <Footer isOnSavedPage={location.pathname === '/saved-news'} />

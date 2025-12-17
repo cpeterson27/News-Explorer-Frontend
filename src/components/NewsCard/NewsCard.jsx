@@ -1,6 +1,6 @@
 import './NewsCard.css';
 
-function NewsCard({ article, onSave, onDelete, isSaved }) {
+function NewsCard({ article, onSave, onDelete, isSaved, showDeleteButton = false }) {
   const handleSaveClick = () => {
     if (isSaved) {
       onDelete(article);
@@ -18,11 +18,13 @@ function NewsCard({ article, onSave, onDelete, isSaved }) {
       />
       
       <button 
-        className={`news-card__save-button ${isSaved ? 'news-card__save-button_active' : ''}`}
+        className={`news-card__save-button ${isSaved && !showDeleteButton ? 'news-card__save-button_active' : ''} ${showDeleteButton ? 'news-card__delete-button' : ''}`}
         onClick={handleSaveClick}
         aria-label={isSaved ? 'Remove from saved' : 'Save article'}
       >        
       </button>
+
+      <span className="news-card__keyword">{article.keyword}</span>
 
       <div className="news-card__content">
         <time className="news-card__date">
@@ -37,7 +39,7 @@ function NewsCard({ article, onSave, onDelete, isSaved }) {
         
         <p className="news-card__description">{article.description}</p>
         
-        <p className="news-card__source">{article.source?.name || article.author}</p>
+        <p className="news-card__source">{article.source?.name || article.source || article.author}</p>
       </div>
     </article>
   );

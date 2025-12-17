@@ -1,27 +1,24 @@
 import { useState } from 'react';
 import PreLoader from '../../components/Preloader/Preloader';
 import Header from '../../components/Header/Header';
-import { handleServerResponse } from '../../utils/api';
-import { BASE_URL } from '../../utils/constants';  
+import { saveArticle, searchNews } from '../../utils/api';
 import SearchResults from '../../components/SearchResults/SearchResults';
 
-function HomePage() {
+function HomePage({ savedArticles, setSavedArticles }) {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
-  const [savedArticles, setSavedArticles] = useState([]);
+  const [keyword, setKeyword] = useState('');
 
   const handleSearch = (query) => {
     setIsLoading(true);
     setHasSearched(true);
 
-    const url = `${BASE_URL}?q=${encodeURIComponent(query)}`;
-
-    return fetch(url)
-      .then(handleServerResponse)
+    searchNews(query)
       .then((data) => {
         setSearchResults(data.articles);
         setIsLoading(false);
+        setKeyword(query);
       })
       .catch((error) => {
         console.error('Error fetching news:', error);
@@ -30,12 +27,19 @@ function HomePage() {
   };
 
   const handleSave = (article) => {
-    setSavedArticles((prev) => [...prev, article]);
+    const token = localStorage.getItem('jwt');
+    saveArticle({...article, keyword, source: article.source.name}, token)
+      .then(() => {
+        setSavedArticles((prev) => [...prev, {...article, keyword}]);
+      })
+      .catch((error) => {
+        console.error('Error saving article:', error);
+      });
   };
 
   const handleDelete = (article) => {
     setSavedArticles((prev) =>
-      prev.filter((saved) => saved.url !== article.url)
+      prev.filter((saved) => saved.url !== article.url),
     );
   };
 

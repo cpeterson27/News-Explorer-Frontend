@@ -19,7 +19,7 @@ function SavedNewsPage({ savedArticles = [] }) {
       <section className="saved-news-page__results">
         <div className="saved-news-page__cards">
           {savedArticles.map((article, index) => (
-            <NewsCard key ={index} article={article} />
+            <NewsCard key ={index} article={article} isSaved={true}/>
           ))}
         </div>
       </section>

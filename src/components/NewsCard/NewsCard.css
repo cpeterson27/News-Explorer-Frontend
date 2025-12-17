@@ -107,6 +107,10 @@
   background-image: url('/assets/images/hover.svg');
 }
 
+.news-card__delete-button{
+  background-image: ;
+}
+
 @media screen and (max-width: 768px) {
   .news-card {
     min-height: 420px;

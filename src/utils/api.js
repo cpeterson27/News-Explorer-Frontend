@@ -30,28 +30,22 @@ export const handleServerResponse = (res) => {
     });
 };
 
-export const searchNews = async (query, from, to) => {
-  const response = await fetch(
-    `${BASE_URL}/news/search?q=${encodeURIComponent(query)}&from=${from}&to=${to}&pageSize=100`
+export const searchNews = async (query) => {
+   return request(
+    `${BASE_URL}/api/news?q=${encodeURIComponent(query)}&pageSize=100`
   );
-  
-  if (!response.ok) {
-    throw new Error('Failed to fetch news data');
-  }
-  
-  return response.json();
 };
 
 export function request(url, options) {
   return fetch(url, options).then(handleServerResponse);
 }
 
-const getArticles = () => {
-  return request(`${BASE_URL}/articles`, { method: 'GET' });
+const getArticles = (token) => {
+  return request(`${BASE_URL}/api/articles`, { method: 'GET', headers: { Authorization: `Bearer ${token}` } });
 };
 
 const saveArticle = (articleData, token) => {
-  return request(`${BASE_URL}/articles`, {
+  return request(`${BASE_URL}/api/articles`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -62,10 +56,20 @@ const saveArticle = (articleData, token) => {
 };
 
 const deleteArticle = (id, token) => {
-  return request(`${BASE_URL}/articles/${id}`, {
+  return request(`${BASE_URL}/api/articles/${id}`, {
     method: 'DELETE',
     headers: { Authorization: `Bearer ${token}` },
   });
 };
 
-export { getArticles, saveArticle, deleteArticle };
+const getCurrentUser = (token) => {
+  return request(`${BASE_URL}/api/user/me`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
+export { getArticles, saveArticle, deleteArticle, getCurrentUser };
