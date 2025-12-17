@@ -107,9 +107,19 @@
   background-image: url('/assets/images/hover.svg');
 }
 
-.news-card__delete-button{
-  background-image: ;
+.news-card__delete-button {
+  opacity: 0.6;
 }
+
+.news-card__delete-button::after {
+  background-image: url('/assets/images/trash.svg');
+}
+
+.news-card__delete-button:hover {
+  opacity: 1;
+}
+
+
 
 @media screen and (max-width: 768px) {
   .news-card {

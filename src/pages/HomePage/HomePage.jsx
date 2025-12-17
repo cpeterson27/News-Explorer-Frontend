@@ -37,11 +37,6 @@ function HomePage({ savedArticles, setSavedArticles }) {
       });
   };
 
-  const handleDelete = (article) => {
-    setSavedArticles((prev) =>
-      prev.filter((saved) => saved.url !== article.url),
-    );
-  };
 
   return (
     <main className="home-page">
@@ -55,7 +50,6 @@ function HomePage({ savedArticles, setSavedArticles }) {
             articles={searchResults}
             onSaveArticle={handleSave}
             savedArticles={savedArticles}
-            onDeleteArticle={handleDelete}
           />
         ))}
     </main>

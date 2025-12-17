@@ -1,28 +1,37 @@
 import './NewsCard.css';
 
-function NewsCard({ article, onSave, onDelete, isSaved, showDeleteButton = false }) {
-  const handleSaveClick = () => {
-    if (isSaved) {
+function NewsCard({
+  article,
+  onSave,
+  onDelete,
+  isSaved,
+  showDeleteButton = false,
+}) {
+ const handleSaveClick = () => {
+  if (showDeleteButton) {
+    if (article._id) {
       onDelete(article);
     } else {
-      onSave(article);
+      console.error('Cannot delete article: no _id found');
     }
-  };
+  } else {
+    onSave(article);
+  }
+};
 
   return (
     <article className="news-card">
-      <img 
-        src={article.urlToImage} 
+      <img
+        src={article.urlToImage}
         alt={article.title}
         className="news-card__image"
       />
-      
-      <button 
+
+      <button
         className={`news-card__save-button ${isSaved && !showDeleteButton ? 'news-card__save-button_active' : ''} ${showDeleteButton ? 'news-card__delete-button' : ''}`}
         onClick={handleSaveClick}
         aria-label={isSaved ? 'Remove from saved' : 'Save article'}
-      >        
-      </button>
+      ></button>
 
       <span className="news-card__keyword">{article.keyword}</span>
 
@@ -31,15 +40,17 @@ function NewsCard({ article, onSave, onDelete, isSaved, showDeleteButton = false
           {new Date(article.publishedAt).toLocaleDateString('en-US', {
             month: 'long',
             day: 'numeric',
-            year: 'numeric'
+            year: 'numeric',
           })}
         </time>
-        
+
         <h2 className="news-card__title">{article.title}</h2>
-        
+
         <p className="news-card__description">{article.description}</p>
-        
-        <p className="news-card__source">{article.source?.name || article.source || article.author}</p>
+
+        <p className="news-card__source">
+          {article.source?.name || article.source || article.author}
+        </p>
       </div>
     </article>
   );

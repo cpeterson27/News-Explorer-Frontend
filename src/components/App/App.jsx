@@ -11,7 +11,7 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { CurrentUserProvider } from '../../contexts/CurrentUserContext';
 import { login, register } from '../../utils/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getArticles, getCurrentUser } from '../../utils/api';
+import { getArticles, getCurrentUser, deleteArticle, saveArticle } from '../../utils/api';
 
 function App() {
   const [activeModal, setActiveModal] = useState('');
@@ -59,8 +59,35 @@ const [savedArticles, setSavedArticles] = useState([]);
     }
   };
 
+const handleDeleteArticle = (article) => {
+  const token = localStorage.getItem('jwt');
+  const articleId = article._id;  
+  
+  return deleteArticle(articleId, token)
+    .then(() => {
+      setSavedArticles((prev) => 
+        prev.filter((saved) => saved._id !== articleId)
+      );
+    })
+    .catch((error) => {
+      console.error('Error deleting article:', error);
+    });
+};
+
+const handleSaveArticle = (article) => {
+  const token = localStorage.getItem('jwt');
+  
+  return saveArticle(article, token)
+    .then((savedArticle) => {
+      setSavedArticles((prev) => [...prev, savedArticle]);
+    })
+    .catch((error) => {
+      console.error('Error saving article:', error);
+    });
+};
+
 const handleRegister = async (values) => {
-    console.log('Values from form:', values); // Add this line
+    console.log('Values from form:', values);
 
   try {
     await register(values.name, values.email, values.password);
@@ -80,6 +107,8 @@ useEffect(() => {
     if (token) {
       getArticles(token)
         .then((articles) => {
+              console.log('Articles from MongoDB:', articles);
+
           setSavedArticles(articles);
         })
         .catch((error) => {
@@ -103,8 +132,8 @@ useEffect(() => {
       />
 
       <Routes>
-        <Route path="/" element={<HomePage savedArticles={savedArticles} setSavedArticles={setSavedArticles}/>}/>
-        <Route path="/saved-news" element={<SavedNewsPage savedArticles={savedArticles}/>} />
+        <Route path="/" element={<HomePage savedArticles={savedArticles} setSavedArticles={setSavedArticles} onSave={handleSaveArticle}/>}/>
+        <Route path="/saved-news" element={<SavedNewsPage savedArticles={savedArticles} onDelete={handleDeleteArticle}/>} />
       </Routes>
 
       <Footer isOnSavedPage={location.pathname === '/saved-news'} />
