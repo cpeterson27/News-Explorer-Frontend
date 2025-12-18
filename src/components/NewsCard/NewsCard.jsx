@@ -5,6 +5,7 @@ function NewsCard({
   onSave,
   onDelete,
   isSaved,
+  isHomePage,
   showDeleteButton = false,
 }) {
  const handleSaveClick = () => {
@@ -21,11 +22,14 @@ function NewsCard({
 
   return (
     <article className="news-card">
-      <img
-        src={article.urlToImage}
-        alt={article.title}
-        className="news-card__image"
-      />
+   <img
+  src={article.urlToImage || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="272"%3E%3Crect width="400" height="272" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="%23999"%3ENo Image Available%3C/text%3E%3C/svg%3E'}
+  alt={article.title}
+  className="news-card__image"
+  onError={(e) => {
+    e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="272"%3E%3Crect width="400" height="272" fill="%23f0f0f0"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="%23999"%3ENo Image Available%3C/text%3E%3C/svg%3E';
+  }}
+/>
 
       <button
         className={`news-card__save-button ${isSaved && !showDeleteButton ? 'news-card__save-button_active' : ''} ${showDeleteButton ? 'news-card__delete-button' : ''}`}
@@ -33,7 +37,10 @@ function NewsCard({
         aria-label={isSaved ? 'Remove from saved' : 'Save article'}
       ></button>
 
-      <span className="news-card__keyword">{article.keyword}</span>
+      {!isHomePage && (
+  <span className="news-card__keyword">{article.keyword}</span>
+)}
+
 
       <div className="news-card__content">
         <time className="news-card__date">

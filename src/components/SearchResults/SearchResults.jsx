@@ -2,7 +2,7 @@ import './SearchResults.css';
 import NewsCard from '../NewsCard/NewsCard';
 import { useState } from 'react';
 
-function SearchResults({ articles, onSaveArticle, savedArticles, onDeleteArticle }) {
+function SearchResults({ articles, onSaveArticle, savedArticles, onDeleteArticle, isHomePage }) {
 
 const [visibleCards, setVisibleCards] = useState(3);
 
@@ -28,6 +28,7 @@ const [visibleCards, setVisibleCards] = useState(3);
             onSave={onSaveArticle}
             isSaved={savedArticles.some(saved => saved.url === article.url)}
             onDelete={onDeleteArticle}
+            isHomePage={isHomePage}
           />
         ))}
       </div>

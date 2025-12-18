@@ -50,6 +50,7 @@ function HomePage({ savedArticles, setSavedArticles }) {
             articles={searchResults}
             onSaveArticle={handleSave}
             savedArticles={savedArticles}
+            isHomePage={true}
           />
         ))}
     </main>

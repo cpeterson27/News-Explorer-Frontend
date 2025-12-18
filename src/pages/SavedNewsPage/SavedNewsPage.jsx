@@ -31,6 +31,7 @@ function SavedNewsPage({ savedArticles = [], onDelete }) {
               isSaved={true}
               showDeleteButton={true}
               onDelete={onDelete}
+              isHomePage={false}
             />
           ))}
         </div>

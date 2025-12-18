@@ -40,7 +40,8 @@ export function request(url, options) {
   return fetch(url, options).then(handleServerResponse);
 }
 
-const getArticles = (token) => {
+const getSavedArticles = (token) => {
+  console.log('Fetching saved articles with token:', token);
   return request(`${BASE_URL}/api/articles`, { method: 'GET', headers: { Authorization: `Bearer ${token}` } });
 };
 
@@ -72,4 +73,4 @@ const getCurrentUser = (token) => {
   });
 };
 
-export { getArticles, saveArticle, deleteArticle, getCurrentUser };
+export { getSavedArticles, saveArticle, deleteArticle, getCurrentUser };

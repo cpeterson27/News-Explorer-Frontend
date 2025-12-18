@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NODE_ENV === "production"  
+const BASE_URL = import.meta.env.NODE_ENV === "production"  
 ? 'https://api.newsexplorer28.crabdance.com'
 : "http://localhost:5001";
 

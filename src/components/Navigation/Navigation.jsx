@@ -45,7 +45,7 @@ function Navigation({ onOpenLoginModal, isOnSavedPage }) {
           >
             {currentUser?.name || 'User'}
             <img
-              src="/assets/images/logout.png"
+              src="/assets/images/logout.svg"
               alt="Logout"
               className="navigation__user-icon"
             />
