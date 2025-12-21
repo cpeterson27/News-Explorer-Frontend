@@ -8,6 +8,8 @@ export const handleServerResponse = (res) => {
       if (!res.ok) {
         const error = new Error(data.message || `Error: ${res.status}`);
         error.status = res.status;
+        error.data = data;
+        error.validation = data.validation;
         throw error;
       }
       return data;

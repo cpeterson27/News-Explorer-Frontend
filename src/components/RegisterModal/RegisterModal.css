@@ -1,0 +1,8 @@
+.modal__error {
+    color: red;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: center;
+    padding: 0;
+}

@@ -1,8 +1,9 @@
 import React from 'react';
+import './RegisterModal.css';
 
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 
-function RegisterModal({ isOpen, onClose, onRegister, onSwitchToLogin }) {
+function RegisterModal({ isOpen, onClose, onRegister, onSwitchToLogin, errorMessage }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -60,6 +61,12 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitchToLogin }) {
           required
         />
       </label>
+
+      {errorMessage && (
+        <div className="modal__error">
+          {errorMessage}
+          </div>
+      )}
     </ModalWithForm>
   );
 }

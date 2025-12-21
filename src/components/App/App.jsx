@@ -11,6 +11,7 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { CurrentUserProvider } from '../../contexts/CurrentUserContext';
 import { login, register } from '../../utils/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
+import SuccessModal from '../SuccessModal/SuccessModal';
 import {
   getSavedArticles,
   getCurrentUser,
@@ -20,6 +21,7 @@ import {
 
 function App() {
   const [activeModal, setActiveModal] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleOpenLoginModal = () => {
     setActiveModal('login');
@@ -27,6 +29,7 @@ function App() {
 
   const handleCloseModal = () => {
     setActiveModal('');
+    setErrorMessage('');
   };
 
   return (
@@ -36,6 +39,8 @@ function App() {
         handleOpenLoginModal={handleOpenLoginModal}
         handleCloseModal={handleCloseModal}
         setActiveModal={setActiveModal}
+        errorMessage={errorMessage}
+        setErrorMessage={setErrorMessage}
       />
     </CurrentUserProvider>
   );
@@ -46,6 +51,8 @@ function AppContent({
   setActiveModal,
   handleOpenLoginModal,
   handleCloseModal,
+  setErrorMessage,
+  errorMessage,
 }) {
   const { setCurrentUser, setIsLoggedIn } = useContext(CurrentUserContext);
   const location = useLocation();
@@ -96,6 +103,8 @@ function AppContent({
 
     try {
       await register(values.name, values.email, values.password);
+
+      setActiveModal('registration-success');
       const data = await login(values.email, values.password);
       localStorage.setItem('jwt', data.token);
       setCurrentUser(data.user);
@@ -104,6 +113,15 @@ function AppContent({
       navigate('/saved-news');
     } catch (error) {
       console.error('Error registering user:', error);
+
+      let message = 'Registration failed. Please try again.';
+
+      if (error.validation && error.validation.body) {
+        message = error.validation.body.message;
+      } else if (error.message) {
+        message = error.message;
+      }
+      setErrorMessage(message);
     }
   };
 
@@ -112,7 +130,6 @@ function AppContent({
     if (token) {
       getSavedArticles(token)
         .then((articles) => {
-
           setSavedArticles(articles);
         })
         .catch((error) => {
@@ -175,6 +192,13 @@ function AppContent({
         onClose={handleCloseModal}
         onSwitchToLogin={() => setActiveModal('login')}
         onRegister={handleRegister}
+        errorMessage={errorMessage}
+      />
+
+      <SuccessModal
+        isOpen={activeModal === 'registration-success'}
+        onClose={handleCloseModal}
+        onSwitchToLogin={() => setActiveModal('login')}
       />
     </div>
   );
