@@ -1,4 +1,3 @@
-import React from 'react';
 import './RegisterModal.css';
 
 import ModalWithForm from '../ModalWithForm/ModalWithForm';

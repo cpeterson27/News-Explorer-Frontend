@@ -49,9 +49,11 @@ function ModalWithForm({
           {children}
 
           <div className="modal__buttons">
+            {buttonText && (
             <button className="modal__submit" type="submit" disabled={isButtonDisabled}>
               {buttonText}
             </button>
+            )}
             {redirectButton}
           </div>
         </form>

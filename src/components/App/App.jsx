@@ -105,12 +105,7 @@ function AppContent({
       await register(values.name, values.email, values.password);
 
       setActiveModal('registration-success');
-      const data = await login(values.email, values.password);
-      localStorage.setItem('jwt', data.token);
-      setCurrentUser(data.user);
-      setIsLoggedIn(true);
-      handleCloseModal();
-      navigate('/saved-news');
+
     } catch (error) {
       console.error('Error registering user:', error);
 

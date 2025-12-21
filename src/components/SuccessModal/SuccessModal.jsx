@@ -11,13 +11,14 @@ function SuccessModal({ isOpen, onClose, onSwitchToLogin }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+
       redirectButton={
         <button
           type="button"
           className="modal__redirect"
           onClick={onSwitchToLogin}
         >
-          <span>or</span> <span className="signup-text">Sign in</span>
+          <span className="signup-text">Sign in</span>
         </button>
       }
     ></ModalWithForm>
