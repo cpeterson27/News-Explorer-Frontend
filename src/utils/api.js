@@ -41,7 +41,6 @@ export function request(url, options) {
 }
 
 const getSavedArticles = (token) => {
-  console.log('Fetching saved articles with token:', token);
   return request(`${BASE_URL}/api/articles`, { method: 'GET', headers: { Authorization: `Bearer ${token}` } });
 };
 

@@ -35,7 +35,7 @@ function Navigation({ onOpenLoginModal, isOnSavedPage }) {
       {isLoggedIn && (
         <>
           <Link to="/saved-news" className="navigation__link">
-            Saved News
+            Saved Articles
           </Link>
 
           <button
@@ -93,7 +93,7 @@ function Navigation({ onOpenLoginModal, isOnSavedPage }) {
               className="navigation__mobile-link"
               onClick={handleMenuToggle}
             >
-              Saved News
+              Saved Articles
             </Link>
 
             <button

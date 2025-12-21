@@ -112,7 +112,6 @@ function AppContent({
     if (token) {
       getSavedArticles(token)
         .then((articles) => {
-          console.log('Articles from MongoDB:', articles);
 
           setSavedArticles(articles);
         })
