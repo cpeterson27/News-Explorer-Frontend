@@ -1,0 +1,113 @@
+.search-results {
+  background-color: #f5f6f7;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.search-results__title {
+  margin: 0 0 64px;
+  padding: 0 104px;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 46px;
+}
+
+.search-results__cards {
+  padding: 0 104px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 16px;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.search-results__show-more {
+  width: 288px;
+  border-radius: 100px;
+  border: none;
+  padding: 20px 10px;
+  font-size: 18px;
+  font-family: 'Roboto', serif;
+  font-weight: 500;
+  cursor: pointer;
+  display: block;
+  margin: 64px auto 80px;
+  background-color: white;
+}
+
+.search-results__show-more:hover {
+  background-color: #e8e8e8;
+}
+
+.search-results__not-found {
+  font-size: 26px;
+  font-weight: 400;
+  text-align: center;
+  margin: 0 0 16px;
+}
+
+.search-results__message {
+  font-size: 18px;
+  color: #b6bcbf;
+  text-align: center;
+  margin: 0 0 80px;
+}
+
+@media (max-width: 1024px) {
+  .search-results__cards {
+    padding: 0 32px;
+    grid-template-columns: repeat(2, auto);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-results__cards {
+    padding: 0 32px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 600px;
+  }
+
+  .search-results__show-more {
+    width: 240px;
+    margin: 64px auto 40px;
+  }
+  .search-results {
+    padding-bottom: 20px;
+  }
+}
+  @media (max-width: 480px) {
+  .search-results__cards {
+    padding: 0 16px;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 320px) {
+  .search-results {
+    background-color: #f5f6f7;
+    padding-top: 32px;
+  }
+
+  .search-results__show-more {
+    margin: 16px auto 5px;
+  }
+
+  .search-results__title {
+    margin: 0 0 58px;
+    padding: 0 16px;
+    font-size: 34px;
+    font-weight: 400;
+  }
+  .search-results__cards {
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+    gap: 8px;
+    justify-content: center;
+  }
+}
