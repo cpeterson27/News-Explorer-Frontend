@@ -16,8 +16,9 @@ function LoginModal({
 }) {
   const { values, handleChange, setValues } = useForm(defaultValues);
   const [errorMessage, setErrorMessage] = useState('');
+  
   const isFormValid = () => {
-    return values.email.trim() !=='' && values.password.trim() !=='';
+    return values.email.trim() !== '' && values.password.trim() !== '';
   }
 
   useEffect(() => {
@@ -36,13 +37,23 @@ function LoginModal({
       setValues(defaultValues);
       onClose();
     } catch (error) {
+      console.log('Login error:', error); 
       if (error.status === 401) {
         setErrorMessage('Invalid email or password.');
+      } else if (error.message) {
+        setErrorMessage(error.message);
       } else {
-        setErrorMessage(error.message || 'Login failed. Please try again');
+        setErrorMessage('Login failed. Please try again');
       }
     }
   };
+
+  const isEmailError = errorMessage && (
+    errorMessage.includes('email') || 
+    errorMessage.includes('Invalid email address')
+  );
+  
+  const isPasswordError = errorMessage && errorMessage.toLowerCase().includes('password');
 
   if (!isOpen) return null;
 
@@ -52,7 +63,6 @@ function LoginModal({
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      error={errorMessage}
       buttonText="Sign in"
       isButtonDisabled={!isFormValid()}
       redirectButton={
@@ -71,12 +81,17 @@ function LoginModal({
           id="email"
           type="email"
           name="email"
-          className={`modal__input ${errorMessage ? 'modal__input_error' : ''}`}
+          className={`modal__input ${isEmailError ? 'modal__input_error' : ''}`}
           placeholder="Enter email"
           value={values.email}
           onChange={handleChange}
           required
         />
+        {isEmailError && (
+          <span className="modal__error modal__error_visible">
+            {errorMessage}
+          </span>
+        )}
       </label>
 
       <label htmlFor="password" className="modal__label">
@@ -87,14 +102,21 @@ function LoginModal({
           name="password"
           value={values.password}
           onChange={handleChange}
-          className={`modal__input ${errorMessage ? 'modal__input_error' : ''}`}
+          className={`modal__input ${isPasswordError ? 'modal__input_error' : ''}`}
           placeholder="Enter password"
           required
           minLength="8"
         />
+        {isPasswordError && (
+          <span className="modal__error modal__error_visible">
+            {errorMessage}
+          </span>
+        )}
       </label>
 
-      {errorMessage && <p className="modal__error">{errorMessage}</p>}
+      {errorMessage && !isEmailError && !isPasswordError && (
+        <p className="modal__error modal__error_visible">{errorMessage}</p>
+      )}
     </ModalWithForm>
   );
 }

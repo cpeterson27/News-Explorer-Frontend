@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function Navigation({ onOpenLoginModal, isOnSavedPage }) {
+function Navigation({ isOnHomePage, onOpenLoginModal, isOnSavedPage }) {
   const { currentUser, isLoggedIn, setIsLoggedIn, setCurrentUser } =
     useContext(CurrentUserContext);
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function Navigation({ onOpenLoginModal, isOnSavedPage }) {
         NewsExplorer
       </Link>
 
-      <Link to="/" className="navigation__link navigation__link_active">
+      <Link to="/" className={`navigation__link ${isOnHomePage ? 'navigation__link_active' : ''}`}>
         Home
       </Link>
 

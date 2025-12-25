@@ -10,7 +10,7 @@ import RegisterModal from '../RegisterModal/RegisterModal';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { CurrentUserProvider } from '../../contexts/CurrentUserContext';
 import { login, register } from '../../utils/auth';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import SuccessModal from '../SuccessModal/SuccessModal';
 import {
   getSavedArticles,
@@ -56,7 +56,6 @@ function AppContent({
 }) {
   const { setCurrentUser, setIsLoggedIn } = useContext(CurrentUserContext);
   const location = useLocation();
-  const navigate = useNavigate();
   const [savedArticles, setSavedArticles] = useState([]);
   const handleLogin = async (values) => {
     try {
@@ -148,6 +147,7 @@ function AppContent({
       <Navigation
         onOpenLoginModal={handleOpenLoginModal}
         isOnSavedPage={location.pathname === '/saved-news'}
+        isOnHomePage={location.pathname === '/'}
       />
 
       <Routes>

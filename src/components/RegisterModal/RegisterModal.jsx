@@ -11,6 +11,10 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitchToLogin, errorMess
     onRegister({ email, password, name });
   };
 
+const isEmailError = errorMessage && errorMessage.includes('email');
+const isPasswordError = errorMessage && errorMessage.toLowerCase().includes('password');
+const isNameError = errorMessage && errorMessage.includes('name');
+
   return (
     <ModalWithForm
       title="Sign up"
@@ -37,6 +41,11 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitchToLogin, errorMess
           placeholder="Enter email"
           required
         />
+        {isEmailError && (
+          <span className="modal__error modal__error_visible">
+            {errorMessage}
+          </span>
+        )}
       </label>
 
       <label className="modal__label">
@@ -48,6 +57,11 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitchToLogin, errorMess
           placeholder="Enter password"
           required
         />
+        {isPasswordError && (
+          <span className="modal__error modal__error_visible">
+            {errorMessage}
+          </span>
+        )}
       </label>
 
       <label className="modal__label">
@@ -59,10 +73,15 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitchToLogin, errorMess
           placeholder="Enter your username"
           required
         />
+        {isNameError && (
+          <span className="modal__error modal__error_visible">
+            {errorMessage}
+          </span>
+        )}
       </label>
 
-      {errorMessage && (
-        <div className="modal__error">
+      {errorMessage && !isEmailError && !isPasswordError && !isNameError && (
+        <div className="modal__error modal__error_visible">
           {errorMessage}
           </div>
       )}

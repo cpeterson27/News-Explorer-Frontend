@@ -127,3 +127,19 @@
   color: green;
   font-size: 14px;
 }
+
+
+@media (max-width: 320px) {
+  .modal {
+    align-items: flex-end;
+  }
+  .modal__content {
+    width: 100%;
+    border-radius: 16px 16px 0 0;
+    padding: 34px 16px;
+  }
+  .modal__close {
+    top: -55px;
+    right: 3px;
+  }
+}
