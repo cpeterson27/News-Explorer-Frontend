@@ -127,28 +127,20 @@ function AppContent({
     }
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      getSavedArticles(token)
-        .then((articles) => {
-          setSavedArticles(articles);
-        })
-        .catch((error) => {
-          console.error('Error fetching saved articles:', error);
-        });
-      getCurrentUser(token)
-        .then((user) => {
-          setCurrentUser(user);
-          setIsLoggedIn(true);
-        })
-        .catch((error) => {
-          console.error('Error fetching current user:', error);
-        });
-    } else {
-      console.log('No token found in localStorage');
-    }
-  }, []);
+useEffect(() => {
+  const token = localStorage.getItem('jwt');
+  if (!token) return;
+
+  getSavedArticles(token)
+    .then((articles) => {
+      if (articles && articles.length > 0) {
+        setSavedArticles(articles);
+        localStorage.setItem('savedArticles', JSON.stringify(articles));
+      }
+    })
+    .catch((err) => console.error(err));
+}, []);
+
 
   return (
     <div className="app">
