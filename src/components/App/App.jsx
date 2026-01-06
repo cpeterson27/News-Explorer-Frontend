@@ -1,5 +1,3 @@
-console.log('🔥🔥🔥 HELLO FROM NEW BUILD 🔥🔥🔥');
-
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useContext, useEffect } from 'react';
@@ -58,7 +56,15 @@ function AppContent({
 }) {
   const { setCurrentUser, setIsLoggedIn } = useContext(CurrentUserContext);
   const location = useLocation();
-  const [savedArticles, setSavedArticles] = useState([]);
+  const [savedArticles, setSavedArticles] = useState(() => {
+    const stored = localStorage.getItem("savedArticles");
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("savedArticles", JSON.stringify(savedArticles));
+  }, [savedArticles]);
+  
   const handleLogin = async (values) => {
     try {
       const data = await login(values.email, values.password);
