@@ -1,0 +1,11 @@
+.modal__error {
+    color: red;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 0;
+}
+
+.modal__error_visible {
+    display: block;
+}
